@@ -31,6 +31,12 @@
             <el-form-item label="Address">
               <el-input v-model="form.address" />
             </el-form-item>
+            <el-form-item label="Favor">
+              <el-select v-model="form.favor" placeholder="Select">
+                <el-option label="Yes" value='Star' />
+                <el-option label="No" value='' />
+              </el-select>
+            </el-form-item>
           </el-form>
         </span>
         <template #footer>
@@ -44,6 +50,13 @@
       </el-dialog>
 
       <el-table :data="tableData" stripe style="width: 100%">
+        <el-table-column fixed="left" label="favor" width="120">
+          <template #default="scope">
+            <el-tag :type="scope.row.favor === 'Star' ? 'success' : 'info'">
+              {{ scope.row.favor }}
+            </el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="name" label="Name"/>
         <el-table-column prop="telephone_number" label="TelephoneNumber" />
         <el-table-column prop="email" label="email" />
